@@ -1,6 +1,11 @@
 <?php
-session_start();
-require_once '../config/db_config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once dirname(__DIR__) . '/config/db_config.php';
+
+
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -34,7 +39,7 @@ $full_name = $_SESSION['full_name'];
                         <a class="nav-link active" href="dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="courses.php">Courses</a>
+                        <a class="nav-link" href="/latestSIA/scheduling/admin/courses.php">Courses</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="rooms.php">Rooms</a>
@@ -45,7 +50,7 @@ $full_name = $_SESSION['full_name'];
                 </ul>
                 <div class="navbar-nav">
                     <span class="nav-item nav-link text-light">Welcome, <?php echo htmlspecialchars($full_name); ?></span>
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
+                    <a class="nav-link" href="/latestSIA/scheduling/auth/logout.php">Logout</a>
                 </div>
             </div>
         </div>

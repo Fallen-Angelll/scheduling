@@ -1,6 +1,9 @@
 <?php
-session_start();
-require_once dirname(__FILE__) . '/../config/db_config.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once 'config\db_config.php';
 
 // Check if user is logged in and is a teacher
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
@@ -61,7 +64,7 @@ $availabilities = $stmt->fetchAll();
                 </ul>
                 <div class="navbar-nav">
                     <span class="nav-item nav-link text-light">Welcome, <?php echo htmlspecialchars($full_name); ?></span>
-                    <a class="nav-link" href="../auth/logout.php">Logout</a>
+                    <a class="nav-link" href="/latestSIA/scheduling/auth/logout.php">Logout</a>
                 </div>
             </div>
         </div>

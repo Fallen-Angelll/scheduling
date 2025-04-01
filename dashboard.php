@@ -24,4 +24,4 @@ if ($role === 'admin') {
     header('Location: index.php?error=invalid_role');
     exit();
 }
-?>
+?> 
